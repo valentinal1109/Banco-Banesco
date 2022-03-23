@@ -1,21 +1,33 @@
 package banco;
 
+import java.io.IOException;
+
 public class Cliente {
 
-    String nombre , edad, preferencial , retiro , deposito, consulta , ActLibreta , pago;
-    boolean preferecnial;
- 
+    String nombre, edad, preferencial, retiro, deposito, consulta, ActLibreta, pago;
 
-    public Cliente(String nom, String  ed, boolean bol, String  reti, String  depo, String  consul, String  al, String  pa) {
-        this.nombre = nom;
-        this.edad = ed;
-        this.preferecnial = bol;
-        this.retiro = reti;
-        this.deposito = depo;
-        this.consulta = consul;
-        this.ActLibreta = al;
-        this.pago = pa;
+    boolean isPreferencial() {
 
+        while (preferencial != null) {
+
+            if (preferencial.equals("true")) {
+
+                return true;
+
+            }
+            if (preferencial.equals("false")) {
+
+                return false;
+
+            }
+
+            if (!"true".equals(preferencial) && !"false".equals(preferencial)) {
+
+                throw new IllegalArgumentException(" valor preferencial invalido , introducir true or false");
+
+            }
+        }
+        return isPreferencial();
     }
 
 }

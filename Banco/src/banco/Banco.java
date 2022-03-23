@@ -10,10 +10,12 @@ import java.util.ArrayList;
 public class Banco {
 
     public static void main(String[] args) {
+        
+         Cliente persona = new Cliente ();
 
         try {      // Leer archivo //
 
-            BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\valentina\\Documents\\NetBeansProjects\\Banco\\Clientes.in"));
+            BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\valentina\\Documents\\GitHub\\Banco-Banesco\\Banco\\Clientes.in"));
 
             {
             }
@@ -31,52 +33,83 @@ public class Banco {
                 String nombre_cliente;
                 String edad_cliente;
                 String preferencial_cliente;
+               
 
                 for (int i = 0; i < datos.length; i++) {                        // Ciclo que recorre String y almacena los tres primeros datos//
 
                     nombre_cliente = datos[0];
                     edad_cliente = datos[1];
                     preferencial_cliente = datos[2];
+                     
+                    
+                    persona.nombre = nombre_cliente;
+                    persona.edad = edad_cliente;
+                    persona.preferencial = preferencial_cliente;
+                    persona.isPreferencial();
+                    
+                 //   System.out.println(" La persona es preferencial: " +persona.preferencial);
+             
+       
+                    
 
-                    if (i >= 3 && i < 8) {                                     // Ciclo para guardar y sumar transacciones 
+                    if (i >= 3 && i < 8) {                                     // Ciclo para guardar , sumar transacciones y asignar datos al objeto cliente
 
                         if (datos[i].equals("retiro")) {
 
                             String retiro_cliente = datos[i];
                             cantidad_retiro++;
+                            persona.retiro = retiro_cliente + "  " + cantidad_retiro;
 
                         }
                         if (datos[i].equals("ActLibreta")) {
 
                             String ActLibreta_cliente = datos[i];
                             cantidad_ActLibreta++;
-
+                            persona.ActLibreta = ActLibreta_cliente + "  " + cantidad_ActLibreta;
                         }
                         if (datos[i].equals("consulta")) {
 
                             String consulta_cliente = datos[i];
                             cantidad_consulta++;
-
+                            persona.consulta = consulta_cliente + "  " + cantidad_consulta;
                         }
 
                         if (datos[i].equals("deposito")) {
 
                             String deposito_cliente = datos[i];
                             cantidad_deposito++;
-
+                            persona.deposito= deposito_cliente + "  " + cantidad_deposito;              
                         }
 
                         if (datos[i].equals("pago")) {
 
                             String pago_cliente = datos[i];
                             cantidad_pago++;
-
+                            persona.pago = pago_cliente + "  " + cantidad_pago;
                         }
 
                     }
 
                 }
-
+            
+       
+        
+              
+              
+              
+              
+                
+                
+                
+               System.out.println(persona.nombre + " "  + persona.edad +  " " + persona.isPreferencial() + " " + persona.consulta  + " " + persona.ActLibreta + " " + persona.deposito + " "+ persona.retiro + " " + persona.pago);
+                
+                
+                
+                
+                
+                
+                
+                
             }
 
         } catch (IOException e) {
