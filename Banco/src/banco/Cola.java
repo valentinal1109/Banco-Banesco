@@ -1,24 +1,24 @@
 package banco;
 
-class nodo {
+class nodoCola {
 
-    nodo next;
-    nodo prev;
-    Cliente persona;
+    nodoCola next;
+    nodoCola prev;
+    Cliente p;
 
 }
 
 public class Cola {
 
-    nodo front;
-    nodo rear;
+    nodoCola front;
+    nodoCola rear;
     int size = 0;
 
     boolean isEmpty() {
         return front == null;
     }
 
-    void enqueue(nodo incoming) {
+    void enqueue(nodoCola incoming) {
         if (this.isEmpty()) {
             this.front = incoming;
             this.rear = incoming;
@@ -29,9 +29,9 @@ public class Cola {
         this.size++;
     }
 
-    nodo dequeue() {
+    nodoCola dequeue() {
         if (!this.isEmpty()) {
-            nodo temp = this.front;
+            nodoCola temp = this.front;
             this.front = this.front.next;
             temp.next = null;
             if (this.isEmpty()) {

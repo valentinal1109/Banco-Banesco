@@ -1,17 +1,17 @@
 package banco;
 
-class nodo {
+class nodoPila {
 
-    nodo next;
-    Cliente persona;
+    nodoPila next;
+    Cliente p;
 
 }
 
 public class Pila {
 
-    nodo top = null;
+    nodoPila top = null;
 
-    void push(nodo nuevo) {
+    void push(nodoPila nuevo) {
         if (this.isEmpty()) {
             top = nuevo;
         } else {
@@ -20,8 +20,8 @@ public class Pila {
         }
     }
 
-    nodo pop() {
-        nodo temp = top;
+    nodoPila pop() {
+        nodoPila temp = top;
         top = top.next;
         temp.next = null;
         return temp;
@@ -33,13 +33,13 @@ public class Pila {
 
     void printPila() {
         while (!isEmpty()) {
-            System.out.println(pop().persona);
+            System.out.println(pop().p);
         }
     }
 
     Cliente peek() {
         if (!this.isEmpty()) {
-            return top.persona;
+            return top.p;
         } else {
             return null;
         }

@@ -10,8 +10,8 @@ import java.util.ArrayList;
 public class Banco {
 
     public static void main(String[] args) {
-        
-         Cliente persona = new Cliente ();
+
+        Cliente persona = new Cliente();
 
         try {      // Leer archivo //
 
@@ -33,24 +33,17 @@ public class Banco {
                 String nombre_cliente;
                 String edad_cliente;
                 String preferencial_cliente;
-               
 
                 for (int i = 0; i < datos.length; i++) {                        // Ciclo que recorre String y almacena los tres primeros datos//
 
                     nombre_cliente = datos[0];
                     edad_cliente = datos[1];
                     preferencial_cliente = datos[2];
-                     
-                    
+
                     persona.nombre = nombre_cliente;
                     persona.edad = edad_cliente;
                     persona.preferencial = preferencial_cliente;
                     persona.isPreferencial();
-                    
-                 //   System.out.println(" La persona es preferencial: " +persona.preferencial);
-             
-       
-                    
 
                     if (i >= 3 && i < 8) {                                     // Ciclo para guardar , sumar transacciones y asignar datos al objeto cliente
 
@@ -78,7 +71,7 @@ public class Banco {
 
                             String deposito_cliente = datos[i];
                             cantidad_deposito++;
-                            persona.deposito= deposito_cliente + "  " + cantidad_deposito;              
+                            persona.deposito = deposito_cliente + "  " + cantidad_deposito;
                         }
 
                         if (datos[i].equals("pago")) {
@@ -91,17 +84,21 @@ public class Banco {
                     }
 
                 }
-            
-       
-        
-              
-              
-              
-              
-                
-                
-                
-               System.out.println(persona.nombre + " "  + persona.edad +  " " + persona.isPreferencial() + " " + persona.consulta  + " " + persona.ActLibreta + " " + persona.deposito + " "+ persona.retiro + " " + persona.pago);
+
+                nodoCola n = new nodoCola();
+                Cola clientela = new Cola();                                    // Creacion cola clientela con cada persona registrada
+
+                n.p = persona;
+
+                clientela.enqueue(n);
+                System.out.println("Cola: " + n.p.nombre + " " + n.p.edad + " " + n.p.preferencial + " " + n.p.consulta + " " + n.p.ActLibreta + " " + n.p.deposito + " " + n.p.retiro + " " + n.p.pago + " ");
+
+                persona.consulta = "";
+                persona.ActLibreta = "";
+                persona.deposito = "";
+                persona.retiro = "";
+                persona.pago = "";
+                     
                 
                 
                 
