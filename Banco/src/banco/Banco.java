@@ -5,13 +5,36 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Banco {
 
     public static void main(String[] args) {
 
-        Cliente persona = new Cliente();
+        int cantidad_retiro = 0;
+        int cantidad_ActLibreta = 0;
+        int cantidad_consulta = 0;
+        int cantidad_deposito = 0;
+        int cantidad_pago = 0;
+        // -----  cantidad ------------////
+        int segundos_retiro = 0;
+        int segundos_ActLibreta = 0;
+        int segundos_consulta = 0;
+        int segundos_deposito = 0;
+        int segundos_pago = 0;
+        int segundosTotales = 0;
+
+        ///------ segundos --------------//    
+        String nombre_cliente;
+        String edad_cliente;
+        String preferencial_cliente;
+        //------datos string ----------------//
+
+        Cola clientela = new Cola();
+        ///-----  cola - nodo cola --------//    
+        nodoPila a = new nodoPila();
+        Pila Atendidos = new Pila();
+        ///----- pila - nodo pila -------//
 
         try {      // Leer archivo //
 
@@ -20,21 +43,14 @@ public class Banco {
             {
             }
             String linea;
-            while ((linea = br.readLine()) != null) { // Separar datos archivo //
+            while ((linea = br.readLine()) != null) {                   // Separar datos archivo //
 
                 linea.split(",");
                 String[] datos = linea.split(",");
+                Cliente persona = new Cliente();
+                nodoCola n = new nodoCola();
 
-                int cantidad_retiro = 0;
-                int cantidad_ActLibreta = 0;
-                int cantidad_consulta = 0;
-                int cantidad_deposito = 0;
-                int cantidad_pago = 0;
-                String nombre_cliente;
-                String edad_cliente;
-                String preferencial_cliente;
-
-                for (int i = 0; i < datos.length; i++) {                        // Ciclo que recorre String y almacena los tres primeros datos//
+                for (int i = 0; i < datos.length; i++) {                 // Ciclo que recorre String y almacena los tres primeros datos//
 
                     nombre_cliente = datos[0];
                     edad_cliente = datos[1];
@@ -45,68 +61,108 @@ public class Banco {
                     persona.preferencial = preferencial_cliente;
                     persona.isPreferencial();
 
-                    if (i >= 3 && i < 8) {                                     // Ciclo para guardar , sumar transacciones y asignar datos al objeto cliente
+                    if (i >= 3 && i < 8) {                                // Ciclo para guardar , sumar transacciones y asignar datos al objeto cliente
 
                         if (datos[i].equals("retiro")) {
 
                             String retiro_cliente = datos[i];
                             cantidad_retiro++;
-                            persona.retiro = retiro_cliente + "  " + cantidad_retiro;
+                            segundos_retiro = cantidad_retiro * 240;
+                            persona.retiro = retiro_cliente + " " + "(" + cantidad_retiro + ")" + " " + segundos_retiro + " sg" + " - ";
 
                         }
                         if (datos[i].equals("ActLibreta")) {
 
                             String ActLibreta_cliente = datos[i];
                             cantidad_ActLibreta++;
-                            persona.ActLibreta = ActLibreta_cliente + "  " + cantidad_ActLibreta;
+                            segundos_ActLibreta = cantidad_ActLibreta * 300;
+                            persona.ActLibreta = ActLibreta_cliente + "  " + "(" + cantidad_ActLibreta + ")" + "  " + segundos_ActLibreta + " sg" + " - ";
                         }
                         if (datos[i].equals("consulta")) {
 
                             String consulta_cliente = datos[i];
                             cantidad_consulta++;
-                            persona.consulta = consulta_cliente + "  " + cantidad_consulta;
+                            segundos_consulta = cantidad_consulta * 90;
+                            persona.consulta = consulta_cliente + "  " + "(" + cantidad_consulta + ")" + "  " + segundos_consulta + " sg" + " - ";
                         }
 
                         if (datos[i].equals("deposito")) {
 
                             String deposito_cliente = datos[i];
                             cantidad_deposito++;
-                            persona.deposito = deposito_cliente + "  " + cantidad_deposito;
+                            segundos_deposito = cantidad_deposito * 180;
+                            persona.deposito = deposito_cliente + "  " + "(" + cantidad_deposito + ")" + "  " + segundos_deposito + " sg" + " - ";
                         }
 
                         if (datos[i].equals("pago")) {
 
                             String pago_cliente = datos[i];
                             cantidad_pago++;
-                            persona.pago = pago_cliente + "  " + cantidad_pago;
+                            segundos_pago = cantidad_pago * 120;
+                            persona.pago = pago_cliente + "  " + "(" + cantidad_pago + ")" + "  " + segundos_pago + " sg" + " - ";
                         }
 
+                        persona.TiempoTramites = segundos_retiro + segundos_ActLibreta + segundos_consulta + segundos_deposito + segundos_pago;
                     }
 
                 }
 
-                nodoCola n = new nodoCola();
-                Cola clientela = new Cola();                                    // Creacion cola clientela con cada persona registrada
-
                 n.p = persona;
 
-                clientela.enqueue(n);
-                System.out.println("Cola: " + n.p.nombre + " " + n.p.edad + " " + n.p.preferencial + " " + n.p.consulta + " " + n.p.ActLibreta + " " + n.p.deposito + " " + n.p.retiro + " " + n.p.pago + " ");
+                clientela.enqueue(n);        //Creacion cola clientela con cada persona registrada
+                //System.out.println("Cola: " + n.p.nombre + " " + n.p.edad + " " + n.p.isPreferencial() + " " + n.p.consulta + " " + n.p.ActLibreta + " " + n.p.deposito + " " + n.p.retiro + " " + n.p.pago + " " + n.p.TiempoTramites + " sg");
+               //System.out.println("front " + clientela.front.p.nombre);
+               // System.out.println("rear " + clientela.rear.p.nombre);
 
                 persona.consulta = "";
                 persona.ActLibreta = "";
                 persona.deposito = "";
                 persona.retiro = "";
                 persona.pago = "";
-                     
-                
-                
-                
-                
-                
-                
-                
-                
+                segundos_retiro = 0;
+                segundos_ActLibreta = 0;
+                segundos_consulta = 0;
+                segundos_deposito = 0;
+                segundos_pago = 0;
+                cantidad_retiro = 0;
+                cantidad_ActLibreta = 0;
+                cantidad_consulta = 0;
+                cantidad_deposito = 0;
+                cantidad_pago = 0;
+
+                segundosTotales += n.p.TiempoTramites;
+
+              while (!clientela.isEmpty()) {
+                  
+                  if (segundosTotales  <= 27000){
+                  
+                        System.out.println ("--------------------------");
+                        clientela.dequeuePreferencial(n);
+                       // System.out.println(" atendidos" + n.p.nombre);
+                       // System.out.println(" Total " + segundosTotales);
+                  
+                  
+                  
+                  
+                  
+                  }
+                        
+
+                        
+                  }
+
+                   /* do {
+
+                        //  System.out.println(" Total " + segundosTotales);
+
+
+                    } while (segundosTotales <= 27000);
+
+                    // } else {
+                    //        n = clientela.dequeue();
+                    //System.out.println("....." + n.p.nombre + " "+ n.p.preferencial);
+                */
+
             }
 
         } catch (IOException e) {
@@ -118,3 +174,68 @@ public class Banco {
     }
 
 }
+
+// if (clientela.AtencionPreferencial()) {
+//    nodoCola t = new nodoCola();
+//   t = n;
+//   clientela.front = t;
+// t = clientela.dequeue();
+// System.out.println("salio" + t.p.nombre + " "+ t.p.edad);
+// else if (clientela.NodoPreferencial()){
+//   nodoCola t = new nodoCola ();
+//  Cola temp = new Cola ();
+//  temp.enqueue(n);
+//   clientela.front = temp.rear;
+//  temp.rear = clientela.dequeue();
+//  System.out.println("sale"  + " " + n.p.nombre + " " +n.p.preferencial);
+//   }else{
+//   System.out.println("a");
+//  }
+//    n.prev = n.next;
+//    n.next = null;
+//   System.out.println(" Salio " + n.p.nombre + " " + n.p.edad + " " + n.p.isPreferencial());
+//    n = clientela.dequeue();
+//   if (n.p.isPreferencial()){
+//    n.prev = n.next;
+//    n.next = null;
+//    System.out.println(" Salio " + n.p.nombre + " " + n.p.edad + " " + n.p.isPreferencial());
+///clientela.front = n;
+//System.out.println(" dato a desencolar: " + n.p.nombre );
+//  c2.enqueue(clientela.dequeue());
+// System.out.println(" Salio " + c2);
+//if (!n.p.isPreferencial()){
+//  temporalisimo = n ;
+//  temporalisimo = clientela.dequeue();
+//  System.out.println (" " + n.p.nombre);
+//
+// }
+//else if (!n.p.isPreferencial()){
+//   nodoCola t = new nodoCola ();
+//   t = n;
+//   t = clientela.dequeue();
+//   System.out.println("primero: " + t.p.nombre + " "+ t.p.edad);
+//   }
+/*  if (n.p.isPreferencial()){
+                        
+
+                          n.prev = n.next;
+                          n.next = null;
+                        
+
+
+                        System.out.println("."  + " " + n.p.nombre + " " +n.p.preferencial);
+                        
+                   }*/
+//   if (clientela.AtencionPreferencial()) {
+//      clientela.front = clientela.dequeue();
+//      System.out.println(" salio " + clientela.front.p.nombre);
+//    System.out.println(" tamano " + clientela.size);
+//   } else {
+//   a.p = n.p;
+//  n = clientela.dequeue();
+//    System.out.println(" eliminado" + a.p.nombre);
+//    Atendidos.push(a);
+//    if (clientela.Search(n) == n) {
+//       System.out.println(" " + n.p.nombre);
+
+                    //    }

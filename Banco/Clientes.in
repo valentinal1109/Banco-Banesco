@@ -1,4 +1,4 @@
-Juan,20,true,retiro,ActLibreta
+Juan,20,false,retiro,ActLibreta
 Pedro,60,true,pago
 Amanda,19,false,consulta,pago
 Luis,32,true,consulta,retiro,deposito,ActLibreta,pago
@@ -18,7 +18,7 @@ Andres,20,false,deposito,consulta,retiro,ActLibreta,pago
 Raul,32,false,pago,pago,deposito
 David,48,false,pago,consulta,deposito
 Tom,23,false,retiro
-Jean,21,false,pago,deposito
+Jean,21,false,pago,depositos
 Sarah,23,false,retiro,retiro,retiro
 Ygor,23,false,deposito,deposito,deposito,consulta
 Roberto,25,false,ActLibreta
