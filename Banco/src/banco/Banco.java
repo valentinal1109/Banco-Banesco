@@ -110,9 +110,7 @@ public class Banco {
                 n.p = persona;
 
                 clientela.enqueue(n);        //Creacion cola clientela con cada persona registrada
-                //System.out.println("Cola: " + n.p.nombre + " " + n.p.edad + " " + n.p.isPreferencial() + " " + n.p.consulta + " " + n.p.ActLibreta + " " + n.p.deposito + " " + n.p.retiro + " " + n.p.pago + " " + n.p.TiempoTramites + " sg");
-               //System.out.println("front " + clientela.front.p.nombre);
-               // System.out.println("rear " + clientela.rear.p.nombre);
+
 
                 persona.consulta = "";
                 persona.ActLibreta = "";
@@ -136,12 +134,13 @@ public class Banco {
                   
                   if (segundosTotales  <= 27000){
                   
-                        System.out.println ("--------------------------");
+                       System.out.println ("--------------------------");
                         clientela.dequeuePreferencial(n);
                        // System.out.println(" atendidos" + n.p.nombre);
                        // System.out.println(" Total " + segundosTotales);
                   
-                  
+                
+                              
                   
                   
                   
@@ -175,67 +174,3 @@ public class Banco {
 
 }
 
-// if (clientela.AtencionPreferencial()) {
-//    nodoCola t = new nodoCola();
-//   t = n;
-//   clientela.front = t;
-// t = clientela.dequeue();
-// System.out.println("salio" + t.p.nombre + " "+ t.p.edad);
-// else if (clientela.NodoPreferencial()){
-//   nodoCola t = new nodoCola ();
-//  Cola temp = new Cola ();
-//  temp.enqueue(n);
-//   clientela.front = temp.rear;
-//  temp.rear = clientela.dequeue();
-//  System.out.println("sale"  + " " + n.p.nombre + " " +n.p.preferencial);
-//   }else{
-//   System.out.println("a");
-//  }
-//    n.prev = n.next;
-//    n.next = null;
-//   System.out.println(" Salio " + n.p.nombre + " " + n.p.edad + " " + n.p.isPreferencial());
-//    n = clientela.dequeue();
-//   if (n.p.isPreferencial()){
-//    n.prev = n.next;
-//    n.next = null;
-//    System.out.println(" Salio " + n.p.nombre + " " + n.p.edad + " " + n.p.isPreferencial());
-///clientela.front = n;
-//System.out.println(" dato a desencolar: " + n.p.nombre );
-//  c2.enqueue(clientela.dequeue());
-// System.out.println(" Salio " + c2);
-//if (!n.p.isPreferencial()){
-//  temporalisimo = n ;
-//  temporalisimo = clientela.dequeue();
-//  System.out.println (" " + n.p.nombre);
-//
-// }
-//else if (!n.p.isPreferencial()){
-//   nodoCola t = new nodoCola ();
-//   t = n;
-//   t = clientela.dequeue();
-//   System.out.println("primero: " + t.p.nombre + " "+ t.p.edad);
-//   }
-/*  if (n.p.isPreferencial()){
-                        
-
-                          n.prev = n.next;
-                          n.next = null;
-                        
-
-
-                        System.out.println("."  + " " + n.p.nombre + " " +n.p.preferencial);
-                        
-                   }*/
-//   if (clientela.AtencionPreferencial()) {
-//      clientela.front = clientela.dequeue();
-//      System.out.println(" salio " + clientela.front.p.nombre);
-//    System.out.println(" tamano " + clientela.size);
-//   } else {
-//   a.p = n.p;
-//  n = clientela.dequeue();
-//    System.out.println(" eliminado" + a.p.nombre);
-//    Atendidos.push(a);
-//    if (clientela.Search(n) == n) {
-//       System.out.println(" " + n.p.nombre);
-
-                    //    }

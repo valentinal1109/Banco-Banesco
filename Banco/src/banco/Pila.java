@@ -33,14 +33,15 @@ public class Pila {
 
     void printPila() {
         while (!isEmpty()) {
-            System.out.println(pop().p);
+            System.out.println(pop().p.nombre);
         }
     }
 
-    Cliente peek() {
+    String peek() {
         if (!this.isEmpty()) {
-            return top.p;
+            return top.p.nombre ;
         } else {
+            System.out.println("vacio");
             return null;
         }
 
